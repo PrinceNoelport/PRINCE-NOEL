@@ -1,2368 +1,2169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Prince Noel Miranda | Creative Portfolio</title>
-
-  <style>
-
-    :root {
-      --bg: #0b0b0d;
-      --surface: #141417;
-      --surface-2: #1c1c21;
-      --text: #f5f5f5;
-      --muted: #a0a0aa;
-      --accent: #b7ff5a;
-      --line: #29292f;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prince Noel Miranda | Creative Portfolio</title>
+
+<style>
+
+:root {
+  --bg: #0b0b0d;
+  --surface: #141417;
+  --surface-2: #1c1c21;
+  --text: #f5f5f5;
+  --muted: #a0a0aa;
+  --accent: #b7ff5a;
+  --line: #29292f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(11, 11, 13, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 18px 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  max-width: 1200px;
+  margin: auto;
+  padding: 120px 25px 70px;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+.hero-small {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(50px, 8vw, 100px);
+  line-height: 0.95;
+  letter-spacing: -5px;
+  max-width: 1000px;
+  margin-bottom: 30px;
+}
+
+.hero h1 span {
+  color: var(--accent);
+}
+
+.hero p {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+
+/* =========================
+   PROFILE AREA
+========================= */
+
+.profile-area {
+  margin-top: 35px;
+
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+  position: relative;
+  width: fit-content;
+}
+
+
+/* Original photo.
+   No filters, no distortion, no face editing. */
+
+.profile-photo {
+  width: 145px;
+  height: 145px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border: 2px solid var(--accent);
+
+  box-shadow:
+    0 0 0 8px rgba(183, 255, 90, 0.04),
+    0 0 35px rgba(183, 255, 90, 0.08);
+
+  flex-shrink: 0;
+}
+
+
+/* Name beside photo */
+
+.profile-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name-small {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.profile-name h2 {
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: -1px;
+}
+
+.profile-name h2 span {
+  color: var(--accent);
+}
+
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 90px 25px;
+}
+
+.section-label {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 45px;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 45px;
+}
+
+
+/* =========================
+   WORK CATEGORY MENU
+========================= */
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.category-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+
+  min-height: 260px;
+  padding: 35px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card:hover {
+  background: var(--surface-2);
+  border-color: var(--accent);
+  transform: translateY(-5px);
+}
+
+.category-number {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.category-card h3 {
+  font-size: 34px;
+  letter-spacing: -1px;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.category-card p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.category-arrow {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  font-size: 30px;
+  color: var(--accent);
+}
+
+
+/* =========================
+   CATEGORY VIEW
+========================= */
+
+.category-view {
+  display: none;
+}
+
+.category-view.active {
+  display: block;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+
+  padding: 12px 18px;
+  margin-bottom: 35px;
+
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.back-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.category-heading {
+  margin-bottom: 35px;
+}
+
+.category-heading h2 {
+  font-size: 45px;
+  letter-spacing: -2px;
+  margin-bottom: 8px;
+}
+
+.category-heading p {
+  color: var(--muted);
+}
+
+
+/* =========================
+   PROJECT GRID
+========================= */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.project {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+
+.project-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+
+.project-info {
+  padding: 20px;
+}
+
+.project-info h3 {
+  font-size: 19px;
+  margin-bottom: 5px;
+}
+
+.project-info p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+
+/* =========================
+   COMING SOON
+========================= */
+
+.coming-soon {
+  min-height: 300px;
+
+  background: var(--surface);
+  border: 1px dashed var(--line);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 40px;
+}
+
+.coming-soon h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.coming-soon p {
+  color: var(--muted);
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.service {
+  background: var(--surface);
+  border: 1px solid var(--line);
+
+  padding: 30px 22px;
+  min-height: 170px;
+}
+
+.service-number {
+  color: var(--accent);
+  font-size: 13px;
+  margin-bottom: 40px;
+}
+
+.service h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.service p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+  border-top: 1px solid var(--line);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.about h2 {
+  font-size: 45px;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.about p {
+  color: var(--muted);
+  font-size: 16px;
+}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+
+/* =========================
+   CONTACT
+========================= */
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+.contact {
+  border-top: 1px solid var(--line);
+}
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+.contact h2 {
+  font-size: 55px;
+  letter-spacing: -3px;
+  margin-bottom: 40px;
+}
 
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
-    /* =========================
-       HEADER
-    ========================= */
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+  padding: 18px 0;
 
-      background: rgba(11, 11, 13, 0.92);
-      backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
 
-      border-bottom: 1px solid var(--line);
-    }
+.contact-label {
+  color: var(--muted);
+  font-size: 14px;
+}
 
-    .nav {
-      max-width: 1200px;
-      margin: auto;
+.contact-value {
+  font-size: 16px;
+}
 
-      padding: 18px 25px;
+.contact-value:hover {
+  color: var(--accent);
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
 
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
+/* =========================
+   FOOTER
+========================= */
 
-    .logo span {
-      color: var(--accent);
-    }
+footer {
+  border-top: 1px solid var(--line);
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
+  padding: 30px 25px;
 
-    .nav-links a {
-      color: var(--muted);
-      font-size: 14px;
-      transition: 0.3s;
-    }
+  text-align: center;
 
-    .nav-links a:hover {
-      color: var(--text);
-    }
+  color: var(--muted);
 
+  font-size: 13px;
+}
 
-    /* =========================
-       HERO
-    ========================= */
 
-    .hero {
-      max-width: 1200px;
-      margin: auto;
+/* =========================
+   LIGHTBOX
+========================= */
 
-      padding: 120px 25px 100px;
-    }
+.lightbox {
+  position: fixed;
+  inset: 0;
 
-    .hero-small {
-      color: var(--accent);
+  background: rgba(0, 0, 0, 0.94);
 
-      font-size: 14px;
-      font-weight: 700;
+  display: none;
 
-      letter-spacing: 2px;
+  align-items: center;
+  justify-content: center;
 
-      margin-bottom: 18px;
+  z-index: 9999;
 
-      text-transform: uppercase;
-    }
+  padding: 30px;
+}
 
-    .hero h1 {
-      font-size: clamp(50px, 8vw, 100px);
+.lightbox.active {
+  display: flex;
+}
 
-      line-height: 0.95;
+.lightbox-content {
+  max-width: 85vw;
+  max-height: 88vh;
 
-      letter-spacing: -5px;
+  object-fit: contain;
 
-      max-width: 1000px;
+  user-select: none;
+}
 
-      margin-bottom: 30px;
-    }
+.lightbox-close {
+  position: fixed;
 
-    .hero h1 span {
-      color: var(--accent);
-    }
+  top: 20px;
+  right: 30px;
 
-    .hero p {
-      max-width: 650px;
+  color: white;
 
-      color: var(--muted);
+  font-size: 40px;
+  line-height: 1;
 
-      font-size: 18px;
-    }
+  cursor: pointer;
 
+  z-index: 10001;
 
-    /* =========================
-       GENERAL SECTIONS
-    ========================= */
+  transition: 0.2s;
+}
 
-    section {
-      max-width: 1200px;
+.lightbox-close:hover {
+  color: var(--accent);
+}
 
-      margin: auto;
 
-      padding: 90px 25px;
-    }
+/* =========================
+   LIGHTBOX ARROWS
+========================= */
 
-    .section-label {
-      color: var(--accent);
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
 
-      font-size: 13px;
+  top: 50%;
 
-      font-weight: 700;
+  transform: translateY(-50%);
 
-      letter-spacing: 2px;
+  width: 60px;
+  height: 60px;
 
-      text-transform: uppercase;
+  border-radius: 50%;
 
-      margin-bottom: 12px;
-    }
+  border: 1px solid rgba(255,255,255,0.25);
 
-    .section-title {
-      font-size: 45px;
+  background: rgba(20,20,23,0.75);
 
-      line-height: 1;
+  color: white;
 
-      letter-spacing: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      margin-bottom: 45px;
-    }
+  font-size: 30px;
 
+  cursor: pointer;
 
-    /* =========================
-       WORK CATEGORY MENU
-    ========================= */
+  z-index: 10001;
 
-    .category-grid {
-      display: grid;
+  transition: 0.25s;
+}
 
-      grid-template-columns: repeat(2, 1fr);
+.lightbox-prev {
+  left: 25px;
+}
 
-      gap: 20px;
-    }
+.lightbox-next {
+  right: 25px;
+}
 
-    .category-card {
-      background: var(--surface);
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: var(--accent);
 
-      border: 1px solid var(--line);
+  color: #000;
 
-      min-height: 260px;
+  border-color: var(--accent);
+}
 
-      padding: 35px;
+.lightbox-title {
+  position: fixed;
 
-      display: flex;
+  bottom: 20px;
 
-      flex-direction: column;
+  left: 0;
+  right: 0;
 
-      justify-content: space-between;
+  text-align: center;
 
-      cursor: pointer;
+  color: white;
 
-      transition: 0.3s ease;
+  font-size: 15px;
 
-      position: relative;
+  z-index: 10001;
+}
 
-      overflow: hidden;
-    }
+.lightbox-counter {
+  position: fixed;
 
-    .category-card:hover {
-      background: var(--surface-2);
+  bottom: 45px;
 
-      border-color: var(--accent);
+  left: 0;
+  right: 0;
 
-      transform: translateY(-5px);
-    }
+  text-align: center;
 
-    .category-number {
-      font-size: 14px;
+  color: var(--muted);
 
-      color: var(--muted);
-    }
+  font-size: 12px;
 
-    .category-card h3 {
-      font-size: 34px;
+  z-index: 10001;
+}
 
-      letter-spacing: -1px;
 
-      margin-top: auto;
+/* =========================
+   MOBILE
+========================= */
 
-      margin-bottom: 10px;
-    }
+@media (max-width: 800px) {
 
-    .category-card p {
-      color: var(--muted);
+  .nav-links {
+    display: none;
+  }
 
-      font-size: 15px;
-    }
+  .hero {
+    padding-top: 80px;
+  }
 
-    .category-arrow {
-      position: absolute;
+  .hero h1 {
+    font-size: 55px;
+    letter-spacing: -3px;
+  }
 
-      right: 30px;
+  .category-grid,
+  .project-grid,
+  .about-content {
+    grid-template-columns: 1fr;
+  }
 
-      top: 30px;
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-      font-size: 30px;
+  .section-title,
+  .category-heading h2 {
+    font-size: 38px;
+  }
 
-      color: var(--accent);
-    }
+  .contact h2 {
+    font-size: 42px;
+  }
 
 
-    /* =========================
-       CATEGORY VIEW
-    ========================= */
+  /* Profile */
 
-    .category-view {
-      display: none;
-    }
+  .profile-area {
+    gap: 18px;
+  }
 
-    .category-view.active {
-      display: block;
-    }
+  .profile-photo {
+    width: 110px;
+    height: 110px;
+  }
 
-    .back-button {
-      display: inline-flex;
+  .profile-name h2 {
+    font-size: 22px;
+  }
 
-      align-items: center;
 
-      gap: 8px;
+  /* Lightbox */
 
-      border: 1px solid var(--line);
+  .lightbox-prev,
+  .lightbox-next {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
 
-      background: var(--surface);
+  .lightbox-prev {
+    left: 10px;
+  }
 
-      color: var(--text);
+  .lightbox-next {
+    right: 10px;
+  }
 
-      padding: 12px 18px;
+  .lightbox-content {
+    max-width: 78vw;
+    max-height: 82vh;
+  }
 
-      margin-bottom: 35px;
+  .lightbox-close {
+    right: 18px;
+    top: 15px;
+    font-size: 35px;
+  }
 
-      cursor: pointer;
+}
 
-      font-size: 14px;
 
-      transition: 0.3s;
-    }
+@media (max-width: 500px) {
 
-    .back-button:hover {
-      border-color: var(--accent);
+  section {
+    padding: 70px 18px;
+  }
 
-      color: var(--accent);
-    }
+  .nav {
+    padding: 15px 18px;
+  }
 
-    .category-heading {
-      margin-bottom: 35px;
-    }
+  .category-card {
+    min-height: 220px;
+  }
 
-    .category-heading h2 {
-      font-size: 45px;
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 
-      letter-spacing: -2px;
+  .contact-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
 
-      margin-bottom: 8px;
-    }
 
-    .category-heading p {
-      color: var(--muted);
-    }
+  /* Profile on small phones */
 
+  .profile-area {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    /* =========================
-       PROJECT GRID
-    ========================= */
+  .profile-photo {
+    width: 120px;
+    height: 120px;
+  }
 
-    .project-grid {
-      display: grid;
 
-      grid-template-columns: repeat(2, 1fr);
+  .lightbox-prev,
+  .lightbox-next {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+  }
 
-      gap: 22px;
-    }
+}
 
-    .project {
-      background: var(--surface);
-
-      border: 1px solid var(--line);
-
-      overflow: hidden;
-
-      cursor: pointer;
-
-      transition: 0.3s ease;
-    }
-
-    .project:hover {
-      transform: translateY(-5px);
-
-      border-color: var(--accent);
-    }
-
-    .project-image {
-      width: 100%;
-
-      aspect-ratio: 16 / 10;
-
-      object-fit: cover;
-
-      background: var(--surface-2);
-    }
-
-    .project-info {
-      padding: 20px;
-    }
-
-    .project-info h3 {
-      font-size: 19px;
-
-      margin-bottom: 5px;
-    }
-
-    .project-info p {
-      color: var(--muted);
-
-      font-size: 14px;
-    }
-
-
-    /* =========================
-       COMING SOON
-    ========================= */
-
-    .coming-soon {
-      min-height: 300px;
-
-      background: var(--surface);
-
-      border: 1px dashed var(--line);
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      text-align: center;
-
-      padding: 40px;
-    }
-
-    .coming-soon h3 {
-      font-size: 28px;
-
-      margin-bottom: 10px;
-    }
-
-    .coming-soon p {
-      color: var(--muted);
-    }
-
-
-    /* =========================
-       SERVICES
-    ========================= */
-
-    .services-grid {
-      display: grid;
-
-      grid-template-columns: repeat(4, 1fr);
-
-      gap: 15px;
-    }
-
-    .service {
-      background: var(--surface);
-
-      border: 1px solid var(--line);
-
-      padding: 30px 22px;
-
-      min-height: 170px;
-    }
-
-    .service-number {
-      color: var(--accent);
-
-      font-size: 13px;
-
-      margin-bottom: 40px;
-    }
-
-    .service h3 {
-      font-size: 20px;
-
-      margin-bottom: 8px;
-    }
-
-    .service p {
-      color: var(--muted);
-
-      font-size: 13px;
-    }
-
-
-    /* =========================
-       ABOUT
-    ========================= */
-
-    .about {
-      border-top: 1px solid var(--line);
-    }
-
-    .about-content {
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 60px;
-    }
-
-    .about h2 {
-      font-size: 45px;
-
-      line-height: 1;
-
-      letter-spacing: -2px;
-    }
-
-    .about p {
-      color: var(--muted);
-
-      font-size: 16px;
-    }
-
-
-    /* =========================
-       CONTACT
-    ========================= */
-
-    .contact {
-      border-top: 1px solid var(--line);
-    }
-
-    .contact h2 {
-      font-size: 55px;
-
-      letter-spacing: -3px;
-
-      margin-bottom: 40px;
-    }
-
-    .contact-list {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 15px;
-    }
-
-    .contact-item {
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      padding: 18px 0;
-
-      border-bottom: 1px solid var(--line);
-    }
-
-    .contact-label {
-      color: var(--muted);
-
-      font-size: 14px;
-    }
-
-    .contact-value {
-      font-size: 16px;
-    }
-
-    .contact-value:hover {
-      color: var(--accent);
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      border-top: 1px solid var(--line);
-
-      padding: 30px 25px;
-
-      text-align: center;
-
-      color: var(--muted);
-
-      font-size: 13px;
-    }
-
-
-    /* =========================
-       LIGHTBOX
-    ========================= */
-
-    .lightbox {
-      position: fixed;
-
-      inset: 0;
-
-      background: rgba(0, 0, 0, 0.94);
-
-      display: none;
-
-      align-items: center;
-
-      justify-content: center;
-
-      z-index: 9999;
-
-      padding: 30px;
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    .lightbox-content {
-      max-width: 85vw;
-
-      max-height: 88vh;
-
-      object-fit: contain;
-
-      user-select: none;
-    }
-
-    .lightbox-close {
-      position: fixed;
-
-      top: 20px;
-
-      right: 30px;
-
-      color: white;
-
-      font-size: 40px;
-
-      line-height: 1;
-
-      cursor: pointer;
-
-      z-index: 10001;
-
-      transition: 0.2s;
-    }
-
-    .lightbox-close:hover {
-      color: var(--accent);
-    }
-
-
-    /* =========================
-       LIGHTBOX NAVIGATION ARROWS
-    ========================= */
-
-    .lightbox-prev,
-    .lightbox-next {
-      position: fixed;
-
-      top: 50%;
-
-      transform: translateY(-50%);
-
-      width: 60px;
-
-      height: 60px;
-
-      border-radius: 50%;
-
-      border: 1px solid rgba(255,255,255,0.25);
-
-      background: rgba(20,20,23,0.75);
-
-      color: white;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      font-size: 30px;
-
-      cursor: pointer;
-
-      z-index: 10001;
-
-      transition: 0.25s;
-    }
-
-    .lightbox-prev {
-      left: 25px;
-    }
-
-    .lightbox-next {
-      right: 25px;
-    }
-
-    .lightbox-prev:hover,
-    .lightbox-next:hover {
-      background: var(--accent);
-
-      color: #000;
-
-      border-color: var(--accent);
-    }
-
-    .lightbox-title {
-      position: fixed;
-
-      bottom: 20px;
-
-      left: 0;
-
-      right: 0;
-
-      text-align: center;
-
-      color: white;
-
-      font-size: 15px;
-
-      z-index: 10001;
-    }
-
-    .lightbox-counter {
-      position: fixed;
-
-      bottom: 45px;
-
-      left: 0;
-
-      right: 0;
-
-      text-align: center;
-
-      color: var(--muted);
-
-      font-size: 12px;
-
-      z-index: 10001;
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 800px) {
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 80px;
-      }
-
-      .hero h1 {
-        font-size: 55px;
-
-        letter-spacing: -3px;
-      }
-
-      .category-grid,
-      .project-grid,
-      .about-content {
-        grid-template-columns: 1fr;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .section-title,
-      .category-heading h2 {
-        font-size: 38px;
-      }
-
-      .contact h2 {
-        font-size: 42px;
-      }
-
-      .lightbox-prev,
-      .lightbox-next {
-        width: 48px;
-
-        height: 48px;
-
-        font-size: 24px;
-      }
-
-      .lightbox-prev {
-        left: 10px;
-      }
-
-      .lightbox-next {
-        right: 10px;
-      }
-
-      .lightbox-content {
-        max-width: 78vw;
-
-        max-height: 82vh;
-      }
-
-      .lightbox-close {
-        right: 18px;
-
-        top: 15px;
-
-        font-size: 35px;
-      }
-    }
-
-
-    @media (max-width: 500px) {
-
-      section {
-        padding: 70px 18px;
-      }
-
-      .nav {
-        padding: 15px 18px;
-      }
-
-      .category-card {
-        min-height: 220px;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-item {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 5px;
-      }
-
-      .lightbox-prev,
-      .lightbox-next {
-        width: 42px;
-
-        height: 42px;
-
-        font-size: 20px;
-      }
-
-    }
-
-  </style>
+</style>
 </head>
 
 
 <body>
 
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+<!-- =========================
+     HEADER
+========================= -->
 
-  <header>
+<header>
 
-    <nav class="nav">
+<nav class="nav">
 
-      <div class="logo">
-        PNM<span>.</span>
-      </div>
+<div class="logo">
+PNM<span>.</span>
+</div>
 
-      <ul class="nav-links">
+<ul class="nav-links">
 
-        <li>
-          <a href="#home">Home</a>
-        </li>
+<li>
+<a href="#home">Home</a>
+</li>
 
-        <li>
-          <a href="#work">Work</a>
-        </li>
+<li>
+<a href="#work">Work</a>
+</li>
 
-        <li>
-          <a href="#services">Services</a>
-        </li>
+<li>
+<a href="#services">Services</a>
+</li>
 
-        <li>
-          <a href="#about">About</a>
-        </li>
+<li>
+<a href="#about">About</a>
+</li>
 
-        <li>
-          <a href="#contact">Contact</a>
-        </li>
+<li>
+<a href="#contact">Contact</a>
+</li>
 
-      </ul>
+</ul>
 
-    </nav>
+</nav>
 
-  </header>
+</header>
 
 
 
-  <!-- =========================
-       MAIN
-  ========================= -->
+<!-- =========================
+     MAIN
+========================= -->
 
-  <main>
+<main>
 
 
-    <!-- =========================
-         HERO
-    ========================= -->
+<!-- =========================
+     HERO
+========================= -->
 
-    <section class="hero" id="home">
+<section class="hero" id="home">
 
-      <div class="hero-small">
-        Creative Portfolio
-      </div>
+<div class="hero-small">
+Creative Portfolio
+</div>
 
-      <h1>
-        Ideas into<br>
-        <span>visual impact.</span>
-      </h1>
+<h1>
+Ideas into<br>
+<span>visual impact.</span>
+</h1>
 
-      <p>
-        I'm Prince Noel Miranda, a creative designer and editor
-        specializing in graphic design, video editing, photo editing,
-        and carousel design.
-      </p>
+<p>
+I'm Prince Noel Miranda, a creative designer and editor
+specializing in graphic design, video editing, photo editing,
+and carousel design.
+</p>
 
-    </section>
 
+<!-- =========================
+     PRINCE NOEL PROFILE
+========================= -->
 
+<div class="profile-area">
 
-    <!-- =========================
-         WORK
-    ========================= -->
+<img
+src="images/prince-noel-miranda.png"
+alt="Prince Noel Miranda"
+class="profile-photo"
+>
 
-    <section id="work">
+<div class="profile-name">
 
-      <div class="section-label">
-        Selected Work
-      </div>
+<div class="profile-name-small">
+Creative Designer & Editor
+</div>
 
-      <h2 class="section-title">
-        Explore my work.
-      </h2>
+<h2>
+PRINCE NOEL<br>
+<span>MIRANDA.</span>
+</h2>
 
+</div>
 
+</div>
 
-      <!-- =========================
-           CATEGORY MENU
-      ========================= -->
+</section>
 
-      <div class="category-grid" id="categoryMenu">
 
 
-        <!-- GRAPHIC DESIGN -->
+<!-- =========================
+     WORK
+========================= -->
 
-        <div
-          class="category-card"
-          onclick="openCategory('graphic')"
-        >
+<section id="work">
 
-          <div class="category-number">
-            01 / DESIGN
-          </div>
+<div class="section-label">
+Selected Work
+</div>
 
-          <div>
+<h2 class="section-title">
+Explore my work.
+</h2>
 
-            <h3>
-              Graphic Design
-            </h3>
 
-            <p>
-              Posters, layouts, promotional graphics and visual designs.
-            </p>
+<!-- CATEGORY MENU -->
 
-          </div>
+<div class="category-grid" id="categoryMenu">
 
-          <div class="category-arrow">
-            →
-          </div>
 
-        </div>
+<!-- GRAPHIC DESIGN -->
 
+<div
+class="category-card"
+onclick="openCategory('graphic')"
+>
 
+<div class="category-number">
+01 / DESIGN
+</div>
 
-        <!-- VIDEO EDITING -->
+<div>
 
-        <div
-          class="category-card"
-          onclick="openCategory('video')"
-        >
+<h3>
+Graphic Design
+</h3>
 
-          <div class="category-number">
-            02 / VIDEO
-          </div>
+<p>
+Posters, layouts, promotional graphics and visual designs.
+</p>
 
-          <div>
+</div>
 
-            <h3>
-              Video Editing
-            </h3>
+<div class="category-arrow">
+→
+</div>
 
-            <p>
-              Short-form videos, promotional videos and creative edits.
-            </p>
+</div>
 
-          </div>
 
-          <div class="category-arrow">
-            →
-          </div>
 
-        </div>
+<!-- VIDEO -->
 
+<div
+class="category-card"
+onclick="openCategory('video')"
+>
 
+<div class="category-number">
+02 / VIDEO
+</div>
 
-        <!-- PHOTO EDITING -->
+<div>
 
-        <div
-          class="category-card"
-          onclick="openCategory('photo')"
-        >
+<h3>
+Video Editing
+</h3>
 
-          <div class="category-number">
-            03 / PHOTO
-          </div>
+<p>
+Short-form videos, promotional videos and creative edits.
+</p>
 
-          <div>
+</div>
 
-            <h3>
-              Photo Editing
-            </h3>
+<div class="category-arrow">
+→
+</div>
 
-            <p>
-              Photo enhancement, retouching and creative image editing.
-            </p>
+</div>
 
-          </div>
 
-          <div class="category-arrow">
-            →
-          </div>
 
-        </div>
+<!-- PHOTO -->
 
+<div
+class="category-card"
+onclick="openCategory('photo')"
+>
 
+<div class="category-number">
+03 / PHOTO
+</div>
 
-        <!-- CAROUSEL -->
+<div>
 
-        <div
-          class="category-card"
-          onclick="openCategory('carousel')"
-        >
+<h3>
+Photo Editing
+</h3>
 
-          <div class="category-number">
-            04 / SOCIAL
-          </div>
+<p>
+Photo enhancement, retouching and creative image editing.
+</p>
 
-          <div>
+</div>
 
-            <h3>
-              Carousel Design
-            </h3>
+<div class="category-arrow">
+→
+</div>
 
-            <p>
-              Social media carousel layouts designed for engagement.
-            </p>
+</div>
 
-          </div>
 
-          <div class="category-arrow">
-            →
-          </div>
 
-        </div>
+<!-- CAROUSEL -->
 
-      </div>
+<div
+class="category-card"
+onclick="openCategory('carousel')"
+>
 
+<div class="category-number">
+04 / SOCIAL
+</div>
 
+<div>
 
-      <!-- =========================
-           GRAPHIC DESIGN
-      ========================= -->
+<h3>
+Carousel Design
+</h3>
 
-      <div
-        class="category-view"
-        id="graphic"
-      >
+<p>
+Social media carousel layouts designed for engagement.
+</p>
 
-        <button
-          class="back-button"
-          onclick="backToCategories()"
-        >
-          ← Back to Work
-        </button>
+</div>
 
+<div class="category-arrow">
+→
+</div>
 
-        <div class="category-heading">
+</div>
 
-          <div class="section-label">
-            01 / Design
-          </div>
+</div>
 
-          <h2>
-            Graphic Design
-          </h2>
 
-          <p>
-            A selection of my graphic design projects.
-          </p>
 
-        </div>
+<!-- =========================
+     GRAPHIC DESIGN
+========================= -->
 
+<div
+class="category-view"
+id="graphic"
+>
 
+<button
+class="back-button"
+onclick="backToCategories()"
+>
+← Back to Work
+</button>
 
-        <div class="project-grid">
+<div class="category-heading">
 
+<div class="section-label">
+01 / Design
+</div>
 
-          <!-- =========================
-               DESIGN 01
-          ========================= -->
+<h2>
+Graphic Design
+</h2>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/GRAPHIC DESIGN.png"
-            data-title="Graphic Design 01"
-            data-type="image"
-          >
+<p>
+A selection of my graphic design projects.
+</p>
 
-            <img
-              src="images/GRAPHIC DESIGN.png"
-              alt="Graphic Design 01"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
 
-              <h3>
-                Graphic Design 01
-              </h3>
+<div class="project-grid">
 
-              <p>
-                Graphic Design
-              </p>
 
-            </div>
+<!-- DESIGN 01 -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/GRAPHIC DESIGN.png"
+data-title="Graphic Design 01"
+>
 
+<img
+src="images/GRAPHIC DESIGN.png"
+alt="Graphic Design 01"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               DESIGN 02
-          ========================= -->
+<h3>
+Graphic Design 01
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/GRAPHIC DESIGN (2).png"
-            data-title="Graphic Design 02"
-            data-type="image"
-          >
+<p>
+Graphic Design
+</p>
 
-            <img
-              src="images/GRAPHIC DESIGN (2).png"
-              alt="Graphic Design 02"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                Graphic Design 02
-              </h3>
 
-              <p>
-                Graphic Design
-              </p>
 
-            </div>
+<!-- DESIGN 02 -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/GRAPHIC DESIGN (2).png"
+data-title="Graphic Design 02"
+>
 
+<img
+src="images/GRAPHIC DESIGN (2).png"
+alt="Graphic Design 02"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               DESIGN 03
-          ========================= -->
+<h3>
+Graphic Design 02
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/GRAPHIC DESIGN (3).png"
-            data-title="Graphic Design 03"
-            data-type="image"
-          >
+<p>
+Graphic Design
+</p>
 
-            <img
-              src="images/GRAPHIC DESIGN (3).png"
-              alt="Graphic Design 03"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                Graphic Design 03
-              </h3>
 
-              <p>
-                Graphic Design
-              </p>
 
-            </div>
+<!-- DESIGN 03 -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/GRAPHIC DESIGN (3).png"
+data-title="Graphic Design 03"
+>
 
+<img
+src="images/GRAPHIC DESIGN (3).png"
+alt="Graphic Design 03"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               DESIGN 04
-          ========================= -->
+<h3>
+Graphic Design 03
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/GRAPHIC DESIGN (4).png"
-            data-title="Graphic Design 04"
-            data-type="image"
-          >
+<p>
+Graphic Design
+</p>
 
-            <img
-              src="images/GRAPHIC DESIGN (4).png"
-              alt="Graphic Design 04"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                Graphic Design 04
-              </h3>
 
-              <p>
-                Graphic Design
-              </p>
 
-            </div>
+<!-- DESIGN 04 -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/GRAPHIC DESIGN (4).png"
+data-title="Graphic Design 04"
+>
 
+<img
+src="images/GRAPHIC DESIGN (4).png"
+alt="Graphic Design 04"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               DESIGN 05
-          ========================= -->
+<h3>
+Graphic Design 04
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/GRAPHIC DESIGN (5).png"
-            data-title="Graphic Design 05"
-            data-type="image"
-          >
+<p>
+Graphic Design
+</p>
 
-            <img
-              src="images/GRAPHIC DESIGN (5).png"
-              alt="Graphic Design 05"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                Graphic Design 05
-              </h3>
 
-              <p>
-                Graphic Design
-              </p>
 
-            </div>
+<!-- DESIGN 05 -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/GRAPHIC DESIGN (5).png"
+data-title="Graphic Design 05"
+>
 
+<img
+src="images/GRAPHIC DESIGN (5).png"
+alt="Graphic Design 05"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               DESIGN 06
-          ========================= -->
+<h3>
+Graphic Design 05
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/GRAPHIC DESIGN (6).png"
-            data-title="Graphic Design 06"
-            data-type="image"
-          >
+<p>
+Graphic Design
+</p>
 
-            <img
-              src="images/GRAPHIC DESIGN (6).png"
-              alt="Graphic Design 06"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                Graphic Design 06
-              </h3>
 
-              <p>
-                Graphic Design
-              </p>
 
-            </div>
+<!-- DESIGN 06 -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/GRAPHIC DESIGN (6).png"
+data-title="Graphic Design 06"
+>
 
+<img
+src="images/GRAPHIC DESIGN (6).png"
+alt="Graphic Design 06"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               DESIGN 07
-          ========================= -->
+<h3>
+Graphic Design 06
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/GRAPHIC DESIGN (7).png"
-            data-title="Graphic Design 07"
-            data-type="image"
-          >
+<p>
+Graphic Design
+</p>
 
-            <img
-              src="images/GRAPHIC DESIGN (7).png"
-              alt="Graphic Design 07"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                Graphic Design 07
-              </h3>
 
-              <p>
-                Graphic Design
-              </p>
 
-            </div>
+<!-- DESIGN 07 -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/GRAPHIC DESIGN (7).png"
+data-title="Graphic Design 07"
+>
 
+<img
+src="images/GRAPHIC DESIGN (7).png"
+alt="Graphic Design 07"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               DESIGN 08
-          ========================= -->
+<h3>
+Graphic Design 07
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/GRAPHIC DESIGN (8).png"
-            data-title="Graphic Design 08"
-            data-type="image"
-          >
+<p>
+Graphic Design
+</p>
 
-            <img
-              src="images/GRAPHIC DESIGN (8).png"
-              alt="Graphic Design 08"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                Graphic Design 08
-              </h3>
 
-              <p>
-                Graphic Design
-              </p>
 
-            </div>
+<!-- DESIGN 08 -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/GRAPHIC DESIGN (8).png"
+data-title="Graphic Design 08"
+>
 
+<img
+src="images/GRAPHIC DESIGN (8).png"
+alt="Graphic Design 08"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               ID LAYOUT
-          ========================= -->
+<h3>
+Graphic Design 08
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/ID LAYOUT.png"
-            data-title="ID Layout"
-            data-type="image"
-          >
+<p>
+Graphic Design
+</p>
 
-            <img
-              src="images/ID LAYOUT.png"
-              alt="ID Layout"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                ID Layout
-              </h3>
 
-              <p>
-                Graphic Design
-              </p>
 
-            </div>
+<!-- ID LAYOUT -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/ID LAYOUT.png"
+data-title="ID Layout"
+>
 
+<img
+src="images/ID LAYOUT.png"
+alt="ID Layout"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               JULY THEME
-          ========================= -->
+<h3>
+ID Layout
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/JULY THEME POSTER.png"
-            data-title="July Theme Poster"
-            data-type="image"
-          >
+<p>
+Graphic Design
+</p>
 
-            <img
-              src="images/JULY THEME POSTER.png"
-              alt="July Theme Poster"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                July Theme Poster
-              </h3>
 
-              <p>
-                Poster Design
-              </p>
 
-            </div>
+<!-- JULY -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/JULY THEME POSTER.png"
+data-title="July Theme Poster"
+>
 
+<img
+src="images/JULY THEME POSTER.png"
+alt="July Theme Poster"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               PREACHER
-          ========================= -->
+<h3>
+July Theme Poster
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/PREACHER.png"
-            data-title="Preacher Design"
-            data-type="image"
-          >
+<p>
+Poster Design
+</p>
 
-            <img
-              src="images/PREACHER.png"
-              alt="Preacher Design"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                Preacher Design
-              </h3>
 
-              <p>
-                Graphic Design
-              </p>
 
-            </div>
+<!-- PREACHER -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/PREACHER.png"
+data-title="Preacher Design"
+>
 
+<img
+src="images/PREACHER.png"
+alt="Preacher Design"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               PROMO
-          ========================= -->
+<h3>
+Preacher Design
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/PROMO LAYOUT.png"
-            data-title="Promo Layout"
-            data-type="image"
-          >
+<p>
+Graphic Design
+</p>
 
-            <img
-              src="images/PROMO LAYOUT.png"
-              alt="Promo Layout"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                Promo Layout
-              </h3>
 
-              <p>
-                Promotional Design
-              </p>
 
-            </div>
+<!-- PROMO -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/PROMO LAYOUT.png"
+data-title="Promo Layout"
+>
 
+<img
+src="images/PROMO LAYOUT.png"
+alt="Promo Layout"
+class="project-image"
+>
 
+<div class="project-info">
 
-          <!-- =========================
-               RALLY
-          ========================= -->
+<h3>
+Promo Layout
+</h3>
 
-          <div
-            class="project"
-            onclick="openProject(this)"
-            data-image="images/RALLY POSTER.png"
-            data-title="Rally Poster"
-            data-type="image"
-          >
+<p>
+Promotional Design
+</p>
 
-            <img
-              src="images/RALLY POSTER.png"
-              alt="Rally Poster"
-              class="project-image"
-            >
+</div>
 
-            <div class="project-info">
+</div>
 
-              <h3>
-                Rally Poster
-              </h3>
 
-              <p>
-                Poster Design
-              </p>
 
-            </div>
+<!-- RALLY -->
 
-          </div>
+<div
+class="project"
+onclick="openProject(this)"
+data-image="images/RALLY POSTER.png"
+data-title="Rally Poster"
+>
 
+<img
+src="images/RALLY POSTER.png"
+alt="Rally Poster"
+class="project-image"
+>
 
-        </div>
+<div class="project-info">
 
-      </div>
+<h3>
+Rally Poster
+</h3>
 
+<p>
+Poster Design
+</p>
 
+</div>
 
-      <!-- =========================
-           VIDEO EDITING
-      ========================= -->
+</div>
 
-      <div
-        class="category-view"
-        id="video"
-      >
 
-        <button
-          class="back-button"
-          onclick="backToCategories()"
-        >
-          ← Back to Work
-        </button>
+</div>
 
+</div>
 
-        <div class="category-heading">
 
-          <div class="section-label">
-            02 / Video
-          </div>
 
-          <h2>
-            Video Editing
-          </h2>
+<!-- =========================
+     VIDEO
+========================= -->
 
-          <p>
-            My video editing projects will be added here.
-          </p>
+<div
+class="category-view"
+id="video"
+>
 
-        </div>
+<button
+class="back-button"
+onclick="backToCategories()"
+>
+← Back to Work
+</button>
 
+<div class="category-heading">
 
-        <div class="coming-soon">
+<div class="section-label">
+02 / Video
+</div>
 
-          <div>
+<h2>
+Video Editing
+</h2>
 
-            <h3>
-              Video Projects Coming Soon
-            </h3>
+<p>
+My video editing projects will be added here.
+</p>
 
-            <p>
-              Video editing projects will be added to this section.
-            </p>
+</div>
 
-          </div>
+<div class="coming-soon">
 
-        </div>
+<div>
 
-      </div>
+<h3>
+Video Projects Coming Soon
+</h3>
 
+<p>
+Video editing projects will be added to this section.
+</p>
 
+</div>
 
-      <!-- =========================
-           PHOTO EDITING
-      ========================= -->
+</div>
 
-      <div
-        class="category-view"
-        id="photo"
-      >
+</div>
 
-        <button
-          class="back-button"
-          onclick="backToCategories()"
-        >
-          ← Back to Work
-        </button>
 
 
-        <div class="category-heading">
+<!-- =========================
+     PHOTO
+========================= -->
 
-          <div class="section-label">
-            03 / Photo
-          </div>
+<div
+class="category-view"
+id="photo"
+>
 
-          <h2>
-            Photo Editing
-          </h2>
+<button
+class="back-button"
+onclick="backToCategories()"
+>
+← Back to Work
+</button>
 
-          <p>
-            My photo editing projects will be added here.
-          </p>
+<div class="category-heading">
 
-        </div>
+<div class="section-label">
+03 / Photo
+</div>
 
+<h2>
+Photo Editing
+</h2>
 
-        <div class="coming-soon">
+<p>
+My photo editing projects will be added here.
+</p>
 
-          <div>
+</div>
 
-            <h3>
-              Photo Projects Coming Soon
-            </h3>
+<div class="coming-soon">
 
-            <p>
-              Photo editing projects will be added to this section.
-            </p>
+<div>
 
-          </div>
+<h3>
+Photo Projects Coming Soon
+</h3>
 
-        </div>
+<p>
+Photo editing projects will be added to this section.
+</p>
 
-      </div>
+</div>
 
+</div>
 
+</div>
 
-      <!-- =========================
-           CAROUSEL DESIGN
-      ========================= -->
 
-      <div
-        class="category-view"
-        id="carousel"
-      >
 
-        <button
-          class="back-button"
-          onclick="backToCategories()"
-        >
-          ← Back to Work
-        </button>
+<!-- =========================
+     CAROUSEL
+========================= -->
 
+<div
+class="category-view"
+id="carousel"
+>
 
-        <div class="category-heading">
+<button
+class="back-button"
+onclick="backToCategories()"
+>
+← Back to Work
+</button>
 
-          <div class="section-label">
-            04 / Social
-          </div>
+<div class="category-heading">
 
-          <h2>
-            Carousel Design
-          </h2>
+<div class="section-label">
+04 / Social
+</div>
 
-          <p>
-            My social media carousel projects will be added here.
-          </p>
+<h2>
+Carousel Design
+</h2>
 
-        </div>
+<p>
+My social media carousel projects will be added here.
+</p>
 
+</div>
 
-        <div class="coming-soon">
+<div class="coming-soon">
 
-          <div>
+<div>
 
-            <h3>
-              Carousel Projects Coming Soon
-            </h3>
+<h3>
+Carousel Projects Coming Soon
+</h3>
 
-            <p>
-              Carousel designs will be added to this section.
-            </p>
+<p>
+Carousel designs will be added to this section.
+</p>
 
-          </div>
+</div>
 
-        </div>
+</div>
 
-      </div>
+</div>
 
 
-    </section>
+</section>
 
 
 
-    <!-- =========================
-         SERVICES
-    ========================= -->
+<!-- =========================
+     SERVICES
+========================= -->
 
-    <section id="services">
+<section id="services">
 
-      <div class="section-label">
-        Services
-      </div>
+<div class="section-label">
+Services
+</div>
 
-      <h2 class="section-title">
-        What I do.
-      </h2>
+<h2 class="section-title">
+What I do.
+</h2>
 
+<div class="services-grid">
 
-      <div class="services-grid">
 
+<div class="service">
 
-        <div class="service">
+<div class="service-number">
+01
+</div>
 
-          <div class="service-number">
-            01
-          </div>
+<h3>
+Graphic Design
+</h3>
 
-          <h3>
-            Graphic Design
-          </h3>
+<p>
+Posters, promotional materials and visual content.
+</p>
 
-          <p>
-            Posters, promotional materials and visual content.
-          </p>
+</div>
 
-        </div>
 
+<div class="service">
 
+<div class="service-number">
+02
+</div>
 
-        <div class="service">
+<h3>
+Video Editing
+</h3>
 
-          <div class="service-number">
-            02
-          </div>
+<p>
+Creative edits, short-form content and promotional videos.
+</p>
 
-          <h3>
-            Video Editing
-          </h3>
+</div>
 
-          <p>
-            Creative edits, short-form content and promotional videos.
-          </p>
 
-        </div>
+<div class="service">
 
+<div class="service-number">
+03
+</div>
 
+<h3>
+Photo Editing
+</h3>
 
-        <div class="service">
+<p>
+Retouching, enhancement and creative photo editing.
+</p>
 
-          <div class="service-number">
-            03
-          </div>
+</div>
 
-          <h3>
-            Photo Editing
-          </h3>
 
-          <p>
-            Retouching, enhancement and creative photo editing.
-          </p>
+<div class="service">
 
-        </div>
+<div class="service-number">
+04
+</div>
 
+<h3>
+Carousel Design
+</h3>
 
+<p>
+Engaging carousel designs for social media.
+</p>
 
-        <div class="service">
+</div>
 
-          <div class="service-number">
-            04
-          </div>
+</div>
 
-          <h3>
-            Carousel Design
-          </h3>
+</section>
 
-          <p>
-            Engaging carousel designs for social media.
-          </p>
 
-        </div>
 
+<!-- =========================
+     ABOUT
+========================= -->
 
-      </div>
+<section
+class="about"
+id="about"
+>
 
-    </section>
+<div class="section-label">
+About Me
+</div>
 
+<div class="about-content">
 
+<h2>
+Creating visuals that communicate.
+</h2>
 
-    <!-- =========================
-         ABOUT
-    ========================= -->
+<div>
 
-    <section
-      class="about"
-      id="about"
-    >
+<p>
+I'm Prince Noel Miranda, a creative designer and editor
+with experience creating visual content for brands,
+organizations, social media and personal projects.
+</p>
 
-      <div class="section-label">
-        About Me
-      </div>
+<br>
 
+<p>
+I enjoy turning ideas into clean, engaging and meaningful
+visual content through design, editing and creative execution.
+</p>
 
-      <div class="about-content">
+</div>
 
-        <h2>
-          Creating visuals that communicate.
-        </h2>
+</div>
 
+</section>
 
-        <div>
 
-          <p>
-            I'm Prince Noel Miranda, a creative designer and editor
-            with experience creating visual content for brands,
-            organizations, social media and personal projects.
-          </p>
 
-          <br>
+<!-- =========================
+     CONTACT
+========================= -->
 
-          <p>
-            I enjoy turning ideas into clean, engaging and meaningful
-            visual content through design, editing and creative execution.
-          </p>
+<section
+class="contact"
+id="contact"
+>
 
-        </div>
+<div class="section-label">
+Contact
+</div>
 
-      </div>
+<h2>
+Let's work together.
+</h2>
 
-    </section>
+<div class="contact-list">
 
 
+<div class="contact-item">
 
-    <!-- =========================
-         CONTACT
-    ========================= -->
+<div class="contact-label">
+Email
+</div>
 
-    <section
-      class="contact"
-      id="contact"
-    >
+<a
+class="contact-value"
+href="mailto:pnoelmiranda@gmail.com"
+>
+pnoelmiranda@gmail.com
+</a>
 
-      <div class="section-label">
-        Contact
-      </div>
+</div>
 
-      <h2>
-        Let's work together.
-      </h2>
 
+<div class="contact-item">
 
-      <div class="contact-list">
+<div class="contact-label">
+Phone
+</div>
 
+<a
+class="contact-value"
+href="tel:09693877347"
+>
+09693877347
+</a>
 
-        <div class="contact-item">
+</div>
 
-          <div class="contact-label">
-            Email
-          </div>
 
-          <a
-            class="contact-value"
-            href="mailto:pnoelmiranda@gmail.com"
-          >
-            pnoelmiranda@gmail.com
-          </a>
+<div class="contact-item">
 
-        </div>
+<div class="contact-label">
+Facebook
+</div>
 
+<a
+class="contact-value"
+href="https://www.facebook.com/princenoel.miranda"
+target="_blank"
+rel="noopener noreferrer"
+>
+Prince Noel Miranda ↗
+</a>
 
+</div>
 
-        <div class="contact-item">
 
-          <div class="contact-label">
-            Phone
-          </div>
+<div class="contact-item">
 
-          <a
-            class="contact-value"
-            href="tel:09693877347"
-          >
-            09693877347
-          </a>
+<div class="contact-label">
+Instagram
+</div>
 
-        </div>
+<a
+class="contact-value"
+href="https://www.instagram.com/prince.portfolioo/"
+target="_blank"
+rel="noopener noreferrer"
+>
+@prince.portfolioo ↗
+</a>
 
+</div>
 
 
-        <div class="contact-item">
+</div>
 
-          <div class="contact-label">
-            Facebook
-          </div>
+</section>
 
-          <a
-            class="contact-value"
-            href="https://www.facebook.com/princenoel.miranda"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Prince Noel Miranda ↗
-          </a>
 
-        </div>
+</main>
 
 
 
-        <div class="contact-item">
+<!-- =========================
+     FOOTER
+========================= -->
 
-          <div class="contact-label">
-            Instagram
-          </div>
+<footer>
 
-          <a
-            class="contact-value"
-            href="https://www.instagram.com/prince.portfolioo/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @prince.portfolioo ↗
-          </a>
+©
+<span id="year"></span>
+Prince Noel Miranda.
+All rights reserved.
 
-        </div>
+</footer>
 
 
-      </div>
 
-    </section>
+<!-- =========================
+     LIGHTBOX
+========================= -->
 
+<div
+class="lightbox"
+id="lightbox"
+onclick="closeLightbox(event)"
+>
 
-  </main>
+<div
+class="lightbox-close"
+onclick="closeLightbox()"
+>
+×
+</div>
 
 
+<button
+class="lightbox-prev"
+onclick="previousProject(event)"
+>
+←
+</button>
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
 
-  <footer>
+<img
+id="lightboxImage"
+class="lightbox-content"
+src=""
+alt=""
+>
 
-    ©
-    <span id="year"></span>
-    Prince Noel Miranda.
-    All rights reserved.
 
-  </footer>
+<button
+class="lightbox-next"
+onclick="nextProject(event)"
+>
+→
+</button>
 
 
+<div
+id="lightboxCounter"
+class="lightbox-counter"
+></div>
 
-  <!-- =========================
-       LIGHTBOX
-  ========================= -->
 
-  <div
-    class="lightbox"
-    id="lightbox"
-    onclick="closeLightbox(event)"
-  >
+<div
+id="lightboxTitle"
+class="lightbox-title"
+></div>
 
+</div>
 
-    <!-- CLOSE -->
 
-    <div
-      class="lightbox-close"
-      onclick="closeLightbox()"
-    >
-      ×
-    </div>
 
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
-    <!-- PREVIOUS -->
+<script>
 
-    <button
-      class="lightbox-prev"
-      id="lightboxPrev"
-      onclick="previousProject(event)"
-      aria-label="Previous project"
-    >
-      ←
-    </button>
+let currentProjectIndex = 0;
+let currentProjects = [];
 
 
-    <!-- IMAGE -->
+/* CATEGORY */
 
-    <img
-      id="lightboxImage"
-      class="lightbox-content"
-      src=""
-      alt=""
-    >
+function openCategory(category) {
 
+  document.getElementById("categoryMenu").style.display = "none";
 
-    <!-- NEXT -->
+  const categories =
+    document.querySelectorAll(".category-view");
 
-    <button
-      class="lightbox-next"
-      id="lightboxNext"
-      onclick="nextProject(event)"
-      aria-label="Next project"
-    >
-      →
-    </button>
+  categories.forEach(function(item) {
+    item.classList.remove("active");
+  });
 
+  document
+    .getElementById(category)
+    .classList.add("active");
 
-    <!-- COUNTER -->
+  document
+    .getElementById("work")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+}
 
-    <div
-      id="lightboxCounter"
-      class="lightbox-counter"
-    ></div>
 
+function backToCategories() {
 
-    <!-- TITLE -->
+  const categories =
+    document.querySelectorAll(".category-view");
 
-    <div
-      id="lightboxTitle"
-      class="lightbox-title"
-    ></div>
+  categories.forEach(function(item) {
+    item.classList.remove("active");
+  });
 
+  document.getElementById("categoryMenu").style.display = "grid";
 
-  </div>
+  document
+    .getElementById("work")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+}
 
 
+/* OPEN PROJECT */
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
+function openProject(projectElement) {
 
-  <script>
+  const category =
+    projectElement.closest(".category-view");
 
-
-    /* =========================
-       CURRENT LIGHTBOX PROJECT
-    ========================= */
-
-    let currentProjectIndex = 0;
-
-    let currentProjects = [];
-
-
-
-    /* =========================
-       CATEGORY SYSTEM
-    ========================= */
-
-    function openCategory(category) {
-
-      document
-        .getElementById("categoryMenu")
-        .style.display = "none";
-
-
-      const categories =
-        document.querySelectorAll(".category-view");
-
-
-      categories.forEach(function(item) {
-
-        item.classList.remove("active");
-
-      });
-
-
-      document
-        .getElementById(category)
-        .classList.add("active");
-
-
-      document
-        .getElementById("work")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
-
-    }
-
-
-
-    function backToCategories() {
-
-      const categories =
-        document.querySelectorAll(".category-view");
-
-
-      categories.forEach(function(item) {
-
-        item.classList.remove("active");
-
-      });
-
-
-      document
-        .getElementById("categoryMenu")
-        .style.display = "grid";
-
-
-      document
-        .getElementById("work")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
-
-    }
-
-
-
-    /* =========================
-       OPEN PROJECT
-    ========================= */
-
-    function openProject(projectElement) {
-
-      const category =
-        projectElement.closest(".category-view");
-
-
-      currentProjects =
-        Array.from(
-          category.querySelectorAll(".project")
-        );
-
-
-      currentProjectIndex =
-        currentProjects.indexOf(projectElement);
-
-
-      showProject(currentProjectIndex);
-
-
-      document
-        .getElementById("lightbox")
-        .classList.add("active");
-
-
-      document.body.style.overflow = "hidden";
-
-    }
-
-
-
-    /* =========================
-       SHOW PROJECT
-    ========================= */
-
-    function showProject(index) {
-
-      if (currentProjects.length === 0) {
-        return;
-      }
-
-
-      /*
-        Keeps navigation looping.
-
-        Example:
-
-        Last → First
-        First → Last
-      */
-
-      if (index < 0) {
-
-        index =
-          currentProjects.length - 1;
-
-      }
-
-
-      if (index >= currentProjects.length) {
-
-        index = 0;
-
-      }
-
-
-      currentProjectIndex = index;
-
-
-      const project =
-        currentProjects[currentProjectIndex];
-
-
-      const image =
-        project.getAttribute("data-image");
-
-
-      const title =
-        project.getAttribute("data-title");
-
-
-      const imageElement =
-        document.getElementById("lightboxImage");
-
-
-      const titleElement =
-        document.getElementById("lightboxTitle");
-
-
-      const counterElement =
-        document.getElementById("lightboxCounter");
-
-
-      imageElement.src = image;
-
-      imageElement.alt = title;
-
-      titleElement.textContent = title;
-
-
-      counterElement.textContent =
-        (currentProjectIndex + 1)
-        + " / "
-        + currentProjects.length;
-
-    }
-
-
-
-    /* =========================
-       PREVIOUS PROJECT
-    ========================= */
-
-    function previousProject(event) {
-
-      if (event) {
-        event.stopPropagation();
-      }
-
-
-      showProject(
-        currentProjectIndex - 1
-      );
-
-    }
-
-
-
-    /* =========================
-       NEXT PROJECT
-    ========================= */
-
-    function nextProject(event) {
-
-      if (event) {
-        event.stopPropagation();
-      }
-
-
-      showProject(
-        currentProjectIndex + 1
-      );
-
-    }
-
-
-
-    /* =========================
-       CLOSE LIGHTBOX
-    ========================= */
-
-    function closeLightbox(event) {
-
-      /*
-        Only close when:
-
-        1. X is clicked
-        2. Dark background is clicked
-      */
-
-      if (
-        event &&
-        event.target &&
-        event.target.id !== "lightbox"
-      ) {
-
-        return;
-
-      }
-
-
-      document
-        .getElementById("lightbox")
-        .classList.remove("active");
-
-
-      document.body.style.overflow = "";
-
-    }
-
-
-
-    /* =========================
-       KEYBOARD CONTROLS
-    ========================= */
-
-    document.addEventListener(
-      "keydown",
-      function(event) {
-
-        const lightbox =
-          document.getElementById("lightbox");
-
-
-        if (
-          !lightbox.classList.contains("active")
-        ) {
-
-          return;
-
-        }
-
-
-        /*
-          ESC = CLOSE
-        */
-
-        if (event.key === "Escape") {
-
-          closeLightbox();
-
-        }
-
-
-        /*
-          LEFT ARROW = PREVIOUS
-        */
-
-        if (event.key === "ArrowLeft") {
-
-          previousProject();
-
-        }
-
-
-        /*
-          RIGHT ARROW = NEXT
-        */
-
-        if (event.key === "ArrowRight") {
-
-          nextProject();
-
-        }
-
-      }
+  currentProjects =
+    Array.from(
+      category.querySelectorAll(".project")
     );
 
+  currentProjectIndex =
+    currentProjects.indexOf(projectElement);
+
+  showProject(currentProjectIndex);
+
+  document
+    .getElementById("lightbox")
+    .classList.add("active");
+
+  document.body.style.overflow = "hidden";
+}
 
 
-    /* =========================
-       CURRENT YEAR
-    ========================= */
+/* SHOW PROJECT */
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+function showProject(index) {
+
+  if (currentProjects.length === 0) {
+    return;
+  }
+
+  if (index < 0) {
+    index = currentProjects.length - 1;
+  }
+
+  if (index >= currentProjects.length) {
+    index = 0;
+  }
+
+  currentProjectIndex = index;
+
+  const project =
+    currentProjects[currentProjectIndex];
+
+  const image =
+    project.getAttribute("data-image");
+
+  const title =
+    project.getAttribute("data-title");
+
+  document.getElementById("lightboxImage").src = image;
+
+  document.getElementById("lightboxImage").alt = title;
+
+  document.getElementById("lightboxTitle").textContent = title;
+
+  document.getElementById("lightboxCounter").textContent =
+    (currentProjectIndex + 1)
+    + " / "
+    + currentProjects.length;
+}
 
 
-  </script>
+/* PREVIOUS */
 
+function previousProject(event) {
+
+  if (event) {
+    event.stopPropagation();
+  }
+
+  showProject(currentProjectIndex - 1);
+}
+
+
+/* NEXT */
+
+function nextProject(event) {
+
+  if (event) {
+    event.stopPropagation();
+  }
+
+  showProject(currentProjectIndex + 1);
+}
+
+
+/* CLOSE */
+
+function closeLightbox(event) {
+
+  if (
+    event &&
+    event.target &&
+    event.target.id !== "lightbox"
+  ) {
+    return;
+  }
+
+  document
+    .getElementById("lightbox")
+    .classList.remove("active");
+
+  document.body.style.overflow = "";
+}
+
+
+/* KEYBOARD */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    const lightbox =
+      document.getElementById("lightbox");
+
+    if (
+      !lightbox.classList.contains("active")
+    ) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+
+    if (event.key === "ArrowLeft") {
+      previousProject();
+    }
+
+    if (event.key === "ArrowRight") {
+      nextProject();
+    }
+
+  }
+);
+
+
+/* YEAR */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+</script>
 
 </body>
 </html>
