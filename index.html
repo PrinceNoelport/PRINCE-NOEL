@@ -717,74 +717,8 @@ footer {
         <h2>Graphic Design</h2>
         <p>A selection of my graphic design projects.</p>
       </div>
-
-      <div class="project-grid" id="graphicProjects">
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/GRAPHIC DESIGN.png" data-title="Graphic Design 01">
-          <div class="project-thumb-wrap"><img src="images/GRAPHIC DESIGN.png" alt="Graphic Design 01" class="project-image"></div>
-          <div class="project-info"><h3>Graphic Design 01</h3><p>Graphic Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/GRAPHIC DESIGN (2).png" data-title="Graphic Design 02">
-          <div class="project-thumb-wrap"><img src="images/GRAPHIC DESIGN (2).png" alt="Graphic Design 02" class="project-image"></div>
-          <div class="project-info"><h3>Graphic Design 02</h3><p>Graphic Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/GRAPHIC DESIGN (3).png" data-title="Graphic Design 03">
-          <div class="project-thumb-wrap"><img src="images/GRAPHIC DESIGN (3).png" alt="Graphic Design 03" class="project-image"></div>
-          <div class="project-info"><h3>Graphic Design 03</h3><p>Graphic Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/GRAPHIC DESIGN (4).png" data-title="Graphic Design 04">
-          <div class="project-thumb-wrap"><img src="images/GRAPHIC DESIGN (4).png" alt="Graphic Design 04" class="project-image"></div>
-          <div class="project-info"><h3>Graphic Design 04</h3><p>Graphic Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/GRAPHIC DESIGN (5).png" data-title="Graphic Design 05">
-          <div class="project-thumb-wrap"><img src="images/GRAPHIC DESIGN (5).png" alt="Graphic Design 05" class="project-image"></div>
-          <div class="project-info"><h3>Graphic Design 05</h3><p>Graphic Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/GRAPHIC DESIGN (6).png" data-title="Graphic Design 06">
-          <div class="project-thumb-wrap"><img src="images/GRAPHIC DESIGN (6).png" alt="Graphic Design 06" class="project-image"></div>
-          <div class="project-info"><h3>Graphic Design 06</h3><p>Graphic Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/GRAPHIC DESIGN (7).png" data-title="Graphic Design 07">
-          <div class="project-thumb-wrap"><img src="images/GRAPHIC DESIGN (7).png" alt="Graphic Design 07" class="project-image"></div>
-          <div class="project-info"><h3>Graphic Design 07</h3><p>Graphic Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/GRAPHIC DESIGN (8).png" data-title="Graphic Design 08">
-          <div class="project-thumb-wrap"><img src="images/GRAPHIC DESIGN (8).png" alt="Graphic Design 08" class="project-image"></div>
-          <div class="project-info"><h3>Graphic Design 08</h3><p>Graphic Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/ID LAYOUT.png" data-title="ID Layout">
-          <div class="project-thumb-wrap"><img src="images/ID LAYOUT.png" alt="ID Layout" class="project-image"></div>
-          <div class="project-info"><h3>ID Layout</h3><p>Graphic Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/JULY THEME POSTER.png" data-title="July Theme Poster">
-          <div class="project-thumb-wrap"><img src="images/JULY THEME POSTER.png" alt="July Theme Poster" class="project-image"></div>
-          <div class="project-info"><h3>July Theme Poster</h3><p>Poster Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/PREACHER.png" data-title="Preacher Design">
-          <div class="project-thumb-wrap"><img src="images/PREACHER.png" alt="Preacher Design" class="project-image"></div>
-          <div class="project-info"><h3>Preacher Design</h3><p>Graphic Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/PROMO LAYOUT.png" data-title="Promo Layout">
-          <div class="project-thumb-wrap"><img src="images/PROMO LAYOUT.png" alt="Promo Layout" class="project-image"></div>
-          <div class="project-info"><h3>Promo Layout</h3><p>Promotional Design</p></div>
-        </div>
-
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="images/RALLY POSTER.png" data-title="Rally Poster">
-          <div class="project-thumb-wrap"><img src="images/RALLY POSTER.png" alt="Rally Poster" class="project-image"></div>
-          <div class="project-info"><h3>Rally Poster</h3><p>Poster Design</p></div>
-        </div>
-      </div>
-      <div class="sheet-status" id="graphicStatus"></div>
+      <div class="project-grid" id="graphicProjects"></div>
+      <div class="sheet-status" id="graphicStatus">Loading graphic design projects...</div>
     </div>
 
     <!-- 02 / VIDEO EDITING -->
@@ -1110,7 +1044,6 @@ function normalizeCategory(raw) {
 function renderSheetProjects(rows) {
   if (!rows || rows.length < 2) return;
 
-  // Detect columns from header row (falls back to standard A-G order)
   const headers = rows[0].map(h => h.toLowerCase().trim());
   const findCol = (keywords, fallback) => {
     const idx = headers.findIndex(h => keywords.some(k => h.includes(k)));
@@ -1179,25 +1112,18 @@ function renderSheetProjects(rows) {
       </div>`;
     }).join("");
 
-    if (category === "graphic") {
-      // Keep your existing local graphic design images and append new ones from the sheet
-      grid.insertAdjacentHTML("beforeend", cardsHTML);
-      if (status) status.textContent = "";
-    } else {
-      grid.innerHTML = cardsHTML;
-      if (status) {
-        status.textContent = projects.length
-          ? ""
-          : "No published projects yet. Add a row in Google Sheets and set Published to TRUE.";
-      }
+    grid.innerHTML = cardsHTML;
+    if (status) {
+      status.textContent = projects.length
+        ? ""
+        : "No published projects yet. Add a row in Google Sheets and set Published to TRUE.";
     }
   });
 }
 
 async function loadPortfolioCSV() {
-  const statusIds = ["videoStatus", "photoStatus", "carouselStatus"];
+  const statusIds = ["graphicStatus", "videoStatus", "photoStatus", "carouselStatus"];
   try {
-    // Cache-busting timestamp ensures updates in Google Sheets appear quickly
     const cacheBuster = (PORTFOLIO_CSV_URL.includes("?") ? "&" : "?") + "_t=" + Math.floor(Date.now() / 60000);
     const response = await fetch(PORTFOLIO_CSV_URL + cacheBuster);
     if (!response.ok) throw new Error("HTTP " + response.status);
