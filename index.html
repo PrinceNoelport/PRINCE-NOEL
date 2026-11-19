@@ -329,9 +329,6 @@ section {
   background: var(--surface-2);
   overflow: hidden;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .project-image {
@@ -373,26 +370,12 @@ section {
   font-size: 14px;
 }
 
-.project-type {
-  color: var(--accent);
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-top: 8px;
-}
-
-.sheet-status {
-  color: var(--muted);
-  padding: 24px 0;
-  font-size: 14px;
-}
-
 /* =========================
    SERVICES
 ========================= */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
 }
 
@@ -495,7 +478,7 @@ footer {
 }
 
 /* =========================
-   LIGHTBOX (IMAGE & VIDEO)
+   LIGHTBOX (IMAGE & MP4)
 ========================= */
 .lightbox {
   position: fixed;
@@ -512,7 +495,8 @@ footer {
   display: flex;
 }
 
-.lightbox-content {
+.lightbox-content,
+.lightbox-video {
   max-width: 85vw;
   max-height: 82vh;
   object-fit: contain;
@@ -520,11 +504,9 @@ footer {
 }
 
 .lightbox-video {
-  width: min(960px, 85vw);
-  aspect-ratio: 16 / 9;
-  border: 1px solid var(--line);
-  background: #000;
   display: none;
+  background: #000;
+  border: 1px solid var(--line);
 }
 
 .lightbox-close {
@@ -603,7 +585,7 @@ footer {
   .hero { padding-top: 80px; }
   .hero h1 { font-size: 55px; letter-spacing: -3px; }
   .category-grid, .project-grid, .about-content { grid-template-columns: 1fr; }
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: 1fr; }
   .section-title, .category-heading h2 { font-size: 38px; }
   .contact h2 { font-size: 42px; }
   .profile-area { gap: 18px; }
@@ -612,7 +594,7 @@ footer {
   .lightbox-prev, .lightbox-next { width: 48px; height: 48px; font-size: 24px; }
   .lightbox-prev { left: 10px; }
   .lightbox-next { right: 10px; }
-  .lightbox-content { max-width: 78vw; max-height: 78vh; }
+  .lightbox-content, .lightbox-video { max-width: 78vw; max-height: 78vh; }
   .lightbox-close { right: 18px; top: 15px; font-size: 35px; }
 }
 
@@ -652,12 +634,11 @@ footer {
     <h1>Ideas into<br><span>visual impact.</span></h1>
     <p>
       I'm Prince Noel Miranda, a creative designer and editor
-      specializing in graphic design, video editing, photo editing,
-      and carousel design.
+      specializing in graphic design, video editing, and photo editing.
     </p>
 
     <div class="profile-area">
-      <img src="prince-noel-miranda.png" alt="Prince Noel Miranda" class="profile-photo">
+      <img src="media/prince-noel-miranda.png" alt="Prince Noel Miranda" class="profile-photo">
       <div class="profile-name">
         <div class="profile-name-small">Creative Designer & Editor</div>
         <h2>PRINCE NOEL<br><span>MIRANDA.</span></h2>
@@ -698,15 +679,6 @@ footer {
         </div>
         <div class="category-arrow">→</div>
       </div>
-
-      <div class="category-card" onclick="openCategory('carousel')">
-        <div class="category-number">04 / SOCIAL</div>
-        <div>
-          <h3>Carousel Design</h3>
-          <p>Social media carousel layouts designed for engagement.</p>
-        </div>
-        <div class="category-arrow">→</div>
-      </div>
     </div>
 
     <!-- 01 / GRAPHIC DESIGN -->
@@ -717,8 +689,18 @@ footer {
         <h2>Graphic Design</h2>
         <p>A selection of my graphic design projects.</p>
       </div>
-      <div class="project-grid" id="graphicProjects"></div>
-      <div class="sheet-status" id="graphicStatus">Loading graphic design projects...</div>
+
+      <div class="project-grid">
+        <div class="project" onclick="openProject(this)" data-type="image" data-media="media/church-id-layout.png" data-title="Church ID Layout">
+          <div class="project-thumb-wrap">
+            <img src="media/church-id-layout.png" alt="Church ID Layout" class="project-image">
+          </div>
+          <div class="project-info">
+            <h3>Church ID Layout</h3>
+            <p>Graphic Design</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 02 / VIDEO EDITING -->
@@ -729,8 +711,19 @@ footer {
         <h2>Video Editing</h2>
         <p>Short-form edits, reels, and promotional videos.</p>
       </div>
-      <div class="project-grid" id="videoProjects"></div>
-      <div class="sheet-status" id="videoStatus">Loading video projects...</div>
+
+      <div class="project-grid">
+        <div class="project" onclick="openProject(this)" data-type="video" data-media="media/fashion-campaign.mp4" data-title="Fashion Campaign Edit">
+          <div class="project-thumb-wrap">
+            <img src="media/fashion-campaign-thumb.jpg" alt="Fashion Campaign Edit" class="project-image">
+            <span class="video-badge">▶ Play</span>
+          </div>
+          <div class="project-info">
+            <h3>Fashion Campaign Edit</h3>
+            <p>Short-form fashion promotional video</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 03 / PHOTO EDITING -->
@@ -741,20 +734,18 @@ footer {
         <h2>Photo Editing</h2>
         <p>Photo enhancement, retouching, and creative composites.</p>
       </div>
-      <div class="project-grid" id="photoProjects"></div>
-      <div class="sheet-status" id="photoStatus">Loading photo projects...</div>
-    </div>
 
-    <!-- 04 / CAROUSEL DESIGN -->
-    <div class="category-view" id="carousel">
-      <button class="back-button" onclick="backToCategories()">← Back to Work</button>
-      <div class="category-heading">
-        <div class="section-label">04 / Social</div>
-        <h2>Carousel Design</h2>
-        <p>Swipeable social media layouts crafted for engagement.</p>
+      <div class="project-grid">
+        <div class="project" onclick="openProject(this)" data-type="image" data-media="media/photo-edit-01.jpg" data-title="Photo Edit 01">
+          <div class="project-thumb-wrap">
+            <img src="media/photo-edit-01.jpg" alt="Photo Edit 01" class="project-image">
+          </div>
+          <div class="project-info">
+            <h3>Photo Edit 01</h3>
+            <p>Photo Retouching & Enhancement</p>
+          </div>
+        </div>
       </div>
-      <div class="project-grid" id="carouselProjects"></div>
-      <div class="sheet-status" id="carouselStatus">Loading carousel projects...</div>
     </div>
   </section>
 
@@ -780,12 +771,6 @@ footer {
         <div class="service-number">03</div>
         <h3>Photo Editing</h3>
         <p>Retouching, enhancement and creative photo editing.</p>
-      </div>
-
-      <div class="service">
-        <div class="service-number">04</div>
-        <h3>Carousel Design</h3>
-        <p>Engaging carousel designs for social media.</p>
       </div>
     </div>
   </section>
@@ -850,7 +835,7 @@ footer {
   <button class="lightbox-prev" onclick="previousProject(event)">←</button>
 
   <img id="lightboxImage" class="lightbox-content" src="" alt="">
-  <iframe id="lightboxVideo" class="lightbox-video" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  <video id="lightboxVideo" class="lightbox-video" controls playsinline></video>
 
   <button class="lightbox-next" onclick="nextProject(event)">→</button>
   <div id="lightboxCounter" class="lightbox-counter"></div>
@@ -859,14 +844,9 @@ footer {
 
 <!-- JAVASCRIPT -->
 <script>
-const PORTFOLIO_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQY_X_gHETSswjs73qBIlkV2hm3hCOqH9TDQb1KuLkZWrbVhS3nikY7BFx8tWFD3g/pub?gid=1966134241&single=true&output=csv";
-
 let currentProjectIndex = 0;
 let currentProjects = [];
 
-/* =========================
-   CATEGORY NAVIGATION
-========================= */
 function openCategory(category) {
   document.getElementById("categoryMenu").style.display = "none";
   document.querySelectorAll(".category-view").forEach(item => item.classList.remove("active"));
@@ -880,9 +860,6 @@ function backToCategories() {
   document.getElementById("work").scrollIntoView({ behavior: "smooth" });
 }
 
-/* =========================
-   LIGHTBOX (IMAGES + VIDEOS)
-========================= */
 function openProject(projectElement) {
   const category = projectElement.closest(".category-view");
   currentProjects = Array.from(category.querySelectorAll(".project"));
@@ -901,7 +878,7 @@ function showProject(index) {
 
   const project = currentProjects[currentProjectIndex];
   const type = project.getAttribute("data-type") || "image";
-  const media = project.getAttribute("data-media") || project.getAttribute("data-image");
+  const media = project.getAttribute("data-media");
   const title = project.getAttribute("data-title") || "";
 
   const imgEl = document.getElementById("lightboxImage");
@@ -911,8 +888,10 @@ function showProject(index) {
     imgEl.style.display = "none";
     imgEl.src = "";
     vidEl.style.display = "block";
-    vidEl.src = toVideoEmbedUrl(media);
+    vidEl.src = media;
+    vidEl.play().catch(() => {});
   } else {
+    vidEl.pause();
     vidEl.style.display = "none";
     vidEl.src = "";
     imgEl.style.display = "block";
@@ -936,8 +915,10 @@ function nextProject(event) {
 
 function closeLightbox(event) {
   if (event && event.target && event.target.id !== "lightbox") return;
+  const vidEl = document.getElementById("lightboxVideo");
+  vidEl.pause();
+  vidEl.src = "";
   document.getElementById("lightbox").classList.remove("active");
-  document.getElementById("lightboxVideo").src = "";
   document.body.style.overflow = "";
 }
 
@@ -949,197 +930,6 @@ document.addEventListener("keydown", function(event) {
   if (event.key === "ArrowRight") nextProject();
 });
 
-/* =========================
-   CSV & GOOGLE DRIVE HELPERS
-========================= */
-function parseCSV(text) {
-  const rows = [];
-  let row = [];
-  let val = "";
-  let inQuotes = false;
-
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i];
-    const next = text[i + 1];
-
-    if (inQuotes) {
-      if (ch === '"' && next === '"') {
-        val += '"';
-        i++;
-      } else if (ch === '"') {
-        inQuotes = false;
-      } else {
-        val += ch;
-      }
-    } else {
-      if (ch === '"') {
-        inQuotes = true;
-      } else if (ch === ",") {
-        row.push(val.trim());
-        val = "";
-      } else if (ch === "\r" && next === "\n") {
-        row.push(val.trim());
-        rows.push(row);
-        row = [];
-        val = "";
-        i++;
-      } else if (ch === "\n" || ch === "\r") {
-        row.push(val.trim());
-        rows.push(row);
-        row = [];
-        val = "";
-      } else {
-        val += ch;
-      }
-    }
-  }
-  if (val.length > 0 || row.length > 0) {
-    row.push(val.trim());
-    rows.push(row);
-  }
-  return rows;
-}
-
-function extractDriveId(url) {
-  const match = String(url || "").match(/(?:\/file\/d\/|\/d\/|[?&]id=)([a-zA-Z0-9_-]{15,})/);
-  return match ? match[1] : null;
-}
-
-function toDirectImageUrl(url) {
-  const clean = String(url || "").trim();
-  const id = extractDriveId(clean);
-  if (id) return "https://lh3.googleusercontent.com/d/" + id + "=w1600";
-  return clean;
-}
-
-function toVideoEmbedUrl(url) {
-  const clean = String(url || "").trim();
-  const driveId = extractDriveId(clean);
-  if (driveId) return "https://drive.google.com/file/d/" + driveId + "/preview";
-
-  const ytMatch = clean.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-  if (ytMatch) return "https://www.youtube.com/embed/" + ytMatch[1] + "?autoplay=1";
-
-  return clean;
-}
-
-function escapeHTML(value) {
-  return String(value || "").replace(/[&<>\"']/g, ch => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-  }[ch]));
-}
-
-function normalizeCategory(raw) {
-  const c = String(raw || "").toLowerCase().trim();
-  if (c.includes("graphic") || c === "design") return "graphic";
-  if (c.includes("video")) return "video";
-  if (c.includes("photo")) return "photo";
-  if (c.includes("carousel") || c.includes("social")) return "carousel";
-  return null;
-}
-
-/* =========================
-   LOAD & RENDER CSV PROJECTS
-========================= */
-function renderSheetProjects(rows) {
-  if (!rows || rows.length < 2) return;
-
-  const headers = rows[0].map(h => h.toLowerCase().trim());
-  const findCol = (keywords, fallback) => {
-    const idx = headers.findIndex(h => keywords.some(k => h.includes(k)));
-    return idx !== -1 ? idx : fallback;
-  };
-
-  const colCat   = findCol(["category", "type"], 0);
-  const colTitle = findCol(["title", "name", "project"], 1);
-  const colDesc  = findCol(["desc", "detail", "caption"], 2);
-  const colMedia = findCol(["media", "link", "url", "file"], 3);
-  const colThumb = findCol(["thumb", "cover", "preview"], 4);
-  const colOrder = findCol(["order", "sort", "#"], 5);
-  const colPub   = findCol(["publish", "show", "active", "status"], 6);
-
-  const grouped = { graphic: [], video: [], photo: [], carousel: [] };
-
-  rows.slice(1).forEach(row => {
-    const catKey = normalizeCategory(row[colCat]);
-    const title = (row[colTitle] || "").trim();
-    const description = (row[colDesc] || "").trim();
-    const rawMedia = (row[colMedia] || "").trim();
-    const rawThumb = (row[colThumb] || "").trim();
-    const order = parseFloat(row[colOrder]) || 9999;
-    const pubVal = (row[colPub] !== undefined ? row[colPub] : "true").toLowerCase().trim();
-
-    if (!catKey || !title || !rawMedia) return;
-    if (["false", "no", "0", "draft", "hidden"].includes(pubVal)) return;
-
-    const isVideo = catKey === "video";
-    const mediaUrl = isVideo ? rawMedia : toDirectImageUrl(rawMedia);
-    const thumbUrl = rawThumb
-      ? toDirectImageUrl(rawThumb)
-      : (extractDriveId(rawMedia) ? toDirectImageUrl(rawMedia) : (isVideo ? "" : mediaUrl));
-
-    grouped[catKey].push({ title, description, mediaUrl, thumbUrl, order, isVideo });
-  });
-
-  Object.keys(grouped).forEach(category => {
-    const grid = document.getElementById(category + "Projects");
-    const status = document.getElementById(category + "Status");
-    if (!grid) return;
-
-    const projects = grouped[category].sort((a, b) => a.order - b.order);
-
-    const cardsHTML = projects.map(p => {
-      const title = escapeHTML(p.title);
-      const desc = escapeHTML(p.description || (p.isVideo ? "Video Edit" : "Creative Work"));
-      const media = escapeHTML(p.mediaUrl);
-      const thumb = escapeHTML(p.thumbUrl);
-      const mediaType = p.isVideo ? "video" : "image";
-
-      const thumbMarkup = thumb
-        ? `<img class="project-image" src="${thumb}" alt="${title}" loading="lazy" onerror="this.style.display='none'">`
-        : `<div style="color:var(--muted);font-size:13px;letter-spacing:1px;">▶ VIDEO PREVIEW</div>`;
-
-      return `<div class="project" onclick="openProject(this)" data-type="${mediaType}" data-media="${media}" data-title="${title}">
-        <div class="project-thumb-wrap">
-          ${thumbMarkup}
-          ${p.isVideo ? '<span class="video-badge">▶ Play</span>' : ''}
-        </div>
-        <div class="project-info">
-          <h3>${title}</h3>
-          <p>${desc}</p>
-          ${p.isVideo ? '<div class="project-type">Watch video</div>' : ''}
-        </div>
-      </div>`;
-    }).join("");
-
-    grid.innerHTML = cardsHTML;
-    if (status) {
-      status.textContent = projects.length
-        ? ""
-        : "No published projects yet.";
-    }
-  });
-}
-
-async function loadPortfolioCSV() {
-  const statusIds = ["graphicStatus", "videoStatus", "photoStatus", "carouselStatus"];
-  try {
-    const cacheBuster = (PORTFOLIO_CSV_URL.includes("?") ? "&" : "?") + "_t=" + Math.floor(Date.now() / 60000);
-    const response = await fetch(PORTFOLIO_CSV_URL + cacheBuster);
-    if (!response.ok) throw new Error("HTTP " + response.status);
-    const csvText = await response.text();
-    const rows = parseCSV(csvText);
-    renderSheetProjects(rows);
-  } catch (error) {
-    statusIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = "Unable to load projects from the published CSV. Check your internet connection or sheet publish settings.";
-    });
-    console.error("Portfolio CSV error:", error);
-  }
-}
-
-loadPortfolioCSV();
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
