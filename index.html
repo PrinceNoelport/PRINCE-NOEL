@@ -370,6 +370,14 @@ section {
   font-size: 14px;
 }
 
+.empty-state {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  padding: 30px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
 /* =========================
    SERVICES
 ========================= */
@@ -689,17 +697,8 @@ footer {
         <h2>Graphic Design</h2>
         <p>A selection of my graphic design projects.</p>
       </div>
-
-      <div class="project-grid">
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="media/church-id-layout.png" data-title="Church ID Layout">
-          <div class="project-thumb-wrap">
-            <img src="media/church-id-layout.png" alt="Church ID Layout" class="project-image">
-          </div>
-          <div class="project-info">
-            <h3>Church ID Layout</h3>
-            <p>Graphic Design</p>
-          </div>
-        </div>
+      <div class="project-grid" id="grid-graphic">
+        <div class="empty-state">Loading projects...</div>
       </div>
     </div>
 
@@ -711,18 +710,8 @@ footer {
         <h2>Video Editing</h2>
         <p>Short-form edits, reels, and promotional videos.</p>
       </div>
-
-      <div class="project-grid">
-        <div class="project" onclick="openProject(this)" data-type="video" data-media="media/fashion-campaign.mp4" data-title="Fashion Campaign Edit">
-          <div class="project-thumb-wrap">
-            <img src="media/fashion-campaign-thumb.jpg" alt="Fashion Campaign Edit" class="project-image">
-            <span class="video-badge">▶ Play</span>
-          </div>
-          <div class="project-info">
-            <h3>Fashion Campaign Edit</h3>
-            <p>Short-form fashion promotional video</p>
-          </div>
-        </div>
+      <div class="project-grid" id="grid-video">
+        <div class="empty-state">Loading projects...</div>
       </div>
     </div>
 
@@ -734,17 +723,8 @@ footer {
         <h2>Photo Editing</h2>
         <p>Photo enhancement, retouching, and creative composites.</p>
       </div>
-
-      <div class="project-grid">
-        <div class="project" onclick="openProject(this)" data-type="image" data-media="media/photo-edit-01.jpg" data-title="Photo Edit 01">
-          <div class="project-thumb-wrap">
-            <img src="media/photo-edit-01.jpg" alt="Photo Edit 01" class="project-image">
-          </div>
-          <div class="project-info">
-            <h3>Photo Edit 01</h3>
-            <p>Photo Retouching & Enhancement</p>
-          </div>
-        </div>
+      <div class="project-grid" id="grid-photo">
+        <div class="empty-state">Loading projects...</div>
       </div>
     </div>
   </section>
@@ -844,8 +824,135 @@ footer {
 
 <!-- JAVASCRIPT -->
 <script>
+// PASTE YOUR PUBLISHED GOOGLE SHEET CSV URL BELOW:
+const SHEET_CSV_URL = "PASTE_YOUR_PUBLISHED_GOOGLE_SHEET_CSV_URL_HERE";
+
 let currentProjectIndex = 0;
 let currentProjects = [];
+
+function parseCSV(text) {
+  const rows = [];
+  let row = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const nextChar = text[i + 1];
+
+    if (char === '"') {
+      if (inQuotes && nextChar === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === "," && !inQuotes) {
+      row.push(current.trim());
+      current = "";
+    } else if ((char === "\n" || char === "\r") && !inQuotes) {
+      if (char === "\r" && nextChar === "\n") i++;
+      row.push(current.trim());
+      if (row.some(cell => cell !== "")) rows.push(row);
+      row = [];
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  if (current.length > 0 || row.length > 0) {
+    row.push(current.trim());
+    if (row.some(cell => cell !== "")) rows.push(row);
+  }
+  return rows;
+}
+
+function escapeHTML(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function normalizeCategory(raw) {
+  const val = String(raw || "").toLowerCase().trim();
+  if (val.includes("graphic")) return "graphic";
+  if (val.includes("video")) return "video";
+  if (val.includes("photo")) return "photo";
+  return "";
+}
+
+async function loadPortfolioFromSheet() {
+  const categories = ["graphic", "video", "photo"];
+
+  try {
+    const response = await fetch(SHEET_CSV_URL);
+    if (!response.ok) throw new Error("Failed to fetch Google Sheet CSV");
+    const csvText = await response.text();
+    const rows = parseCSV(csvText);
+
+    // Skip header row (index 0)
+    const items = rows.slice(1).map(cols => {
+      const category = normalizeCategory(cols[0]);
+      const title = cols[1] || "";
+      const description = cols[2] || "";
+      const mediaPath = cols[3] || "";
+      const thumbPath = cols[4] || "";
+      const order = parseInt(cols[5], 10) || 999;
+      const published = String(cols[6] || "TRUE").toUpperCase() === "TRUE";
+      const isVideo = /\.(mp4|webm|mov)$/i.test(mediaPath) || category === "video";
+
+      return { category, title, description, mediaPath, thumbPath, order, published, isVideo };
+    }).filter(item => item.published && item.category && item.mediaPath);
+
+    items.sort((a, b) => a.order - b.order);
+
+    categories.forEach(cat => {
+      const grid = document.getElementById("grid-" + cat);
+      const catItems = items.filter(item => item.category === cat);
+
+      if (catItems.length === 0) {
+        grid.innerHTML = `<div class="empty-state">No projects added yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = catItems.map(item => {
+        const type = item.isVideo ? "video" : "image";
+        let thumbHTML = "";
+
+        if (item.isVideo) {
+          if (item.thumbPath) {
+            thumbHTML = `<img src="${escapeHTML(item.thumbPath)}" alt="${escapeHTML(item.title)}" class="project-image">`;
+          } else {
+            thumbHTML = `<video src="${escapeHTML(item.mediaPath)}#t=0.5" class="project-image" muted preload="metadata"></video>`;
+          }
+          thumbHTML += `<span class="video-badge">▶ Play</span>`;
+        } else {
+          thumbHTML = `<img src="${escapeHTML(item.mediaPath)}" alt="${escapeHTML(item.title)}" class="project-image">`;
+        }
+
+        return `
+          <div class="project" onclick="openProject(this)" data-type="${type}" data-media="${escapeHTML(item.mediaPath)}" data-title="${escapeHTML(item.title)}">
+            <div class="project-thumb-wrap">
+              ${thumbHTML}
+            </div>
+            <div class="project-info">
+              <h3>${escapeHTML(item.title)}</h3>
+              <p>${escapeHTML(item.description)}</p>
+            </div>
+          </div>
+        `;
+      }).join("");
+    });
+  } catch (err) {
+    console.error(err);
+    categories.forEach(cat => {
+      document.getElementById("grid-" + cat).innerHTML =
+        `<div class="empty-state">Unable to load projects. Check that your Google Sheet is published to the web as CSV and pasted into SHEET_CSV_URL.</div>`;
+    });
+  }
+}
 
 function openCategory(category) {
   document.getElementById("categoryMenu").style.display = "none";
@@ -931,6 +1038,7 @@ document.addEventListener("keydown", function(event) {
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
+loadPortfolioFromSheet();
 </script>
 
 </body>
